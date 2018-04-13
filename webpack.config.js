@@ -11,7 +11,7 @@ let pathsToClean = [
 ]
 const isProd = process.env.NODE_ENV === 'production';//true or false
 var bootstrapConfig = isProd ? bootstrapEntryPoints.prod : bootstrapEntryPoints.dev;
-const cssDev = ['style-loader', 'css-loader', 'sass-loader'];
+const cssDev = ['style-loader', 'css-loader?sourceMap', 'sass-loader?sourceMap'];
 const cssProd = ExtractTextPlugin.extract({
     fallback: 'style-loader',
     //resolve-url-loader may be chained before sass-loader if necessary
@@ -26,6 +26,7 @@ module.exports = {
         "contact": './src/contact.js',
         "bootstrap": bootstrapConfig
     },
+    devtool: 'source-map',
     output: {
         filename: '[name].[hash].js',
         path: __dirname + '/dist'
